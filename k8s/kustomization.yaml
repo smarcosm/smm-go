@@ -8,4 +8,4 @@ resources:
 images:
 - name: goserver
   newName: sebastiaomarcos/smm-go
-  newTag: 7fc840faff6e9453eaf492fd2ebbbb05e0b5630e
+  newTag: 15a8f45a69ba5e809b170a96f316d29ef76a9619
