@@ -1,12 +1,19 @@
 package main
 
-import "net/http"
+import (
+	"html/template"
+	"net/http"
+)
 
 func main() {
-	http.HandleFunc("/", Hello)
+	http.HandleFunc("/index/", indexHandler)
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))
 	http.ListenAndServe(":8080", nil)
 }
-
-func Hello(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("<H1>Hello Full Cycle</h1>"))
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	t := template.Must(template.ParseFiles("templates/index.html"))
+	if err := t.ExecuteTemplate(w, "index.html", nil); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
