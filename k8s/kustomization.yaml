@@ -7,5 +7,5 @@ resources:
 
 images:
 - name: goserver
-  newName: wesleywillians/gitopsfc
+  newName: sebastiaomarcos/smm-go
   newTag: sha
